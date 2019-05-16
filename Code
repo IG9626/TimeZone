@@ -1,0 +1,48 @@
+import java.time.Clock;
+import java.time.Duration;
+import java.util.Scanner;
+class Main {
+  public static void main(String[] args) {
+    Scanner in = new Scanner (System.in);
+    int t;
+    int o;
+    System.out.println("This is a clock program it can give you the time in your time zone and 3 other time zones, to start press any number");
+    o = in.nextInt();
+    for (o = 1;o<= 10; o++){
+      System.out.println("to choose which time zone you want to see type the number in parenthesis: Your Time(1), Boston(2), California(3), and HongKong(4) zones");
+      t = in.nextInt();
+      System.out.println("you chose "+ t);
+      if(t== 1){
+        Clock zone1 = Clock.systemDefaultZone();      
+        System.out.println(zone1.getZone());
+        Duration d = Duration.ofHours(0);
+        Clock yourTime = Clock.offset(zone1, d);  
+        System.out.println("Time now: "+ yourTime.instant());
+      }
+      if(t == 2){
+        Clock boston = Clock.systemDefaultZone();      
+        System.out.println(boston.getZone());
+        Duration d = Duration.ofHours(2);
+        Clock yourTime = Clock.offset(boston, d);  
+        System.out.println("Time now in Boston: "+ yourTime.instant());
+      }
+      if(t==3){
+        Clock california = Clock.systemDefaultZone();      
+        System.out.println(california.getZone());
+        Duration d = Duration.ofHours(-1);
+        Clock yourTime = Clock.offset(california, d);  
+        System.out.println("Time now in California: "+ yourTime.instant());
+      }
+      if(t==4){
+        Clock hongKong = Clock.systemDefaultZone();      
+        System.out.println(hongKong.getZone());
+        Duration d = Duration.ofHours(15);
+        Clock yourTime = Clock.offset(hongKong, d);  
+        System.out.println("Time now in HongKong: "+ yourTime.instant());
+      }
+      System.out.println("Do you want to check the time again? YES = 1 NO = 12 ");
+      o = in.nextInt();
+    }
+    System.out.println("Program closed");
+  }
+ }
